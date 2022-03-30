@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { from, fromEvent, Observable, of } from 'rxjs';
+import { from, fromEvent, interval, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-learn-rxjs',
@@ -31,7 +31,12 @@ export class LearnRxjsComponent implements OnInit {
   ngOnInit(): void {
 
     this.students.subscribe(data =>{
-      console.log(data);
+      const seqNum$ = interval(2500);
+      seqNum$.subscribe(num =>{
+        console.log(data,num);
+
+      })
+      
     })
 
       this.studentName.subscribe(data =>{
