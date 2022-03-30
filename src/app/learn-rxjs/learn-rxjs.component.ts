@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { from, fromEvent, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-learn-rxjs',
@@ -7,6 +7,9 @@ import { from, Observable, of } from 'rxjs';
   styleUrls: ['./learn-rxjs.component.css']
 })
 export class LearnRxjsComponent implements OnInit {
+
+  @ViewChild('validate')
+  validateData!: ElementRef;
 
   studentList = ['mark','jhon','mohammed']
   students: Observable<string[]> = of(this.studentList)
@@ -45,7 +48,19 @@ export class LearnRxjsComponent implements OnInit {
         console.log(data);
         
       })
+
+     
    
+  }
+
+  rxjsEventObservable(){
+    const btnObservable$ = fromEvent(this.validateData?.nativeElement,'click');
+
+    btnObservable$.subscribe(data =>{
+      console.log(data);
+      
+    })
+        
   }
 
 }
