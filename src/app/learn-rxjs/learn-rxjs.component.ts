@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-learn-rxjs',
@@ -20,6 +20,9 @@ export class LearnRxjsComponent implements OnInit {
  
   student$: Observable<any> = of(this.studentObj)
 
+  employeeList = ['Mohammed','Abu bakr','Umar']
+  employee$: Observable<string> = from(this.employeeList)
+
   constructor() { }
 
   ngOnInit(): void {
@@ -38,6 +41,10 @@ export class LearnRxjsComponent implements OnInit {
         
       })
       
+      this.employee$.subscribe(data =>{
+        console.log(data);
+        
+      })
    
   }
 
